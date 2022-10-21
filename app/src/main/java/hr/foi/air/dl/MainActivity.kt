@@ -1,4 +1,4 @@
-package hr.foi.air.dl22
+package hr.foi.air.dl
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

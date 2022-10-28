@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.core.view.isVisible
+import hr.foi.air.database.data.DataRepository
 import hr.foi.air.database.data.MockData
 import hr.foi.air.dl.databinding.ActivityMainBinding
 
@@ -42,12 +43,12 @@ class MainActivity : AppCompatActivity() {
         //Unos podataka u bazu, ako je potrebno
         MockData.mockData(this)
 
-        var discounts : List<String>? = null        //where to get data from?
+        var discounts : List<String> = DataRepository(this).getDiscountNames()
 
         //Prikaz podataka na zaslovnu
-        if (discounts != null) {
-            binding.lstDiscounts.adapter =
-                ArrayAdapter<String>(this, R.layout.simple_list_item_1, discounts)
+        binding.lstDiscounts.adapter =
+            ArrayAdapter<String>(this, R.layout.simple_list_item_1, discounts)
+
         }
 
         //hiding empty message

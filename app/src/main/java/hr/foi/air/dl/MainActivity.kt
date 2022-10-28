@@ -1,9 +1,12 @@
 package hr.foi.air.dl
 
+import android.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
+import androidx.core.view.isVisible
 import hr.foi.air.database.data.MockData
 import hr.foi.air.dl.databinding.ActivityMainBinding
 
@@ -30,13 +33,25 @@ class MainActivity : AppCompatActivity() {
         //using the lambda with the same functionality
         binding.btnShowData.setOnClickListener {
             //handle the event
+            displayData(binding)
         }
-        
-        mockSomeData()
     }
 
-    fun mockSomeData()
+    fun displayData(binding: ActivityMainBinding)
     {
+        //Unos podataka u bazu, ako je potrebno
         MockData.mockData(this)
+
+        var discounts : List<String>? = null        //where to get data from?
+
+        //Prikaz podataka na zaslovnu
+        if (discounts != null) {
+            binding.lstDiscounts.adapter =
+                ArrayAdapter<String>(this, R.layout.simple_list_item_1, discounts)
+        }
+
+        //hiding empty message
+        if (!discounts.isEmpty())
+            binding.emptyMessage.isVisible = false
     }
 }

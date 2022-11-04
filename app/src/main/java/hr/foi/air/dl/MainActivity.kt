@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
-import hr.foi.air.database.data.DataRepository
+import hr.foi.air.database.data.DbDataSource
 import hr.foi.air.database.data.MockData
 import hr.foi.air.dl.databinding.ActivityMainBinding
 
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         //Unos podataka u bazu, ako je potrebno
         MockData.mockData(this)
 
-        var discounts : List<String> = DataRepository(this).getDiscountNames()
+        var discounts : List<String> = DbDataSource(this).getDiscountNames()
 
         //Prikaz podataka na zaslovnu
         binding.lstDiscounts.adapter =

@@ -3,6 +3,7 @@ package hr.foi.air.ws
 import com.google.gson.Gson
 import com.squareup.okhttp.OkHttpClient
 import hr.foi.air.ws.responses.MyWebserviceResponse
+import hr.foi.air.core.entities.Store
 import retrofit.*
 
 class MyWebserviceCaller {
@@ -27,7 +28,23 @@ class MyWebserviceCaller {
                     response: Response<MyWebserviceResponse>?,
                     retrofit: Retrofit?
                 ) {
-                    TODO("Not yet implemented")
+                    try {
+                        if(response != null && response.isSuccess)
+                        {
+                            val gson = Gson()
+                            val storeItems : Array<Store> = gson.fromJson(
+                                response.body().items, Array<Store>::class.java)
+                            
+							//data obtained, send it to handler
+
+                        }
+                        else {
+                            //TODO("Nešto nije u redu sa response")
+                        }
+                    }
+                    catch (ex: Exception) {
+                        //TODO("Iznimka u obradi odgovora")
+                    }
                 }
 
                 override fun onFailure(t: Throwable?) {

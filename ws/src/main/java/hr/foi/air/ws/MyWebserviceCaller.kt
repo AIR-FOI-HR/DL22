@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.squareup.okhttp.OkHttpClient
 import hr.foi.air.ws.responses.MyWebserviceResponse
 import hr.foi.air.core.entities.Store
+import hr.foi.air.ws.handlers.MyWebserviceHandler
 import retrofit.*
 
 class MyWebserviceCaller {
@@ -18,7 +19,7 @@ class MyWebserviceCaller {
             .build()
     }
 
-    fun getAllStores()
+    fun getAllStores(method: String, dataArrivedHandler : MyWebserviceHandler)
     {
         val serviceAPI = retrofit.create(MyWebservice::class.java)
         val call : Call<MyWebserviceResponse> = serviceAPI.getAllStores(method)
@@ -34,8 +35,8 @@ class MyWebserviceCaller {
                             val gson = Gson()
                             val storeItems : Array<Store> = gson.fromJson(
                                 response.body().items, Array<Store>::class.java)
-                            
-							//data obtained, send it to handler
+                            dataArrivedHandler.onDataArrived<Store>(
+                                storeItems.toList(), true, response.body().timeStamp)
 
                         }
                         else {

@@ -21,5 +21,19 @@ class MyWebserviceCaller {
     {
         val serviceAPI = retrofit.create(MyWebservice::class.java)
         val call : Call<MyWebserviceResponse> = serviceAPI.getAllStores(method)
+        call.enqueue (
+            object : Callback<MyWebserviceResponse>{
+                override fun onResponse(
+                    response: Response<MyWebserviceResponse>?,
+                    retrofit: Retrofit?
+                ) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onFailure(t: Throwable?) {
+                    TODO("Not yet implemented")
+                }
+            }
+        )
     }
 }

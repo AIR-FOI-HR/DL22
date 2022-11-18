@@ -18,11 +18,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //using the lambda with the same functionality
-        binding.btnShowData.setOnClickListener {
-            //handle the event
-            displayData(binding)
-        }
+        //load and display data
+        displayData(binding)
     }
 
     fun displayData(binding: ActivityMainBinding)
@@ -38,8 +35,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //Prikaz podataka na zaslovnu
-                binding.lstDiscounts.adapter =
-                    ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, discountsNames)
+                //binding.lstDiscounts.adapter =
+                //    ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, discountsNames)
 
                 //hiding empty message
                 if (!discounts.isEmpty())

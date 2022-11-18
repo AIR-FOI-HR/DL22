@@ -1,14 +1,16 @@
 package hr.foi.air.dl
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import hr.foi.air.core.entities.Discount
 import hr.foi.air.core.entities.Store
 import hr.foi.air.dl.data.DataRepository
 import hr.foi.air.dl.data.LoadDataListener
 import hr.foi.air.dl.databinding.ActivityMainBinding
+import hr.foi.air.dl.recyclerview.StoreParent
+import hr.foi.air.dl.recyclerview.StoreRecyclerAdapter
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         repository.loadData(this, object : LoadDataListener {
             override fun onDataLoaded(stores: List<Store>, discounts: List<Discount>) {
-                for (d in discounts) {
-                    discountsNames.add(d.name)
-                }
 
-                //Prikaz podataka na zaslovnu
-                //binding.lstDiscounts.adapter =
-                //    ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, discountsNames)
+                val parentList : ArrayList<StoreParent> = ArrayList()
+                for (s in stores)
+                    parentList.add(StoreParent(s, discounts))
+
+                //prikaz podataka
+                binding.mainRecycler.adapter = StoreRecyclerAdapter(context, parentList)
+                binding.mainRecycler.layoutManager = LinearLayoutManager(context)
 
                 //hiding empty message
-                if (!discounts.isEmpty())
+                if (!stores.isEmpty())
                     binding.emptyMessage.isVisible = false
             }
         })

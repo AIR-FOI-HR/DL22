@@ -30,6 +30,10 @@ class DbDataSource(context: Context) : DataSource {
     }
 
     override fun loadData(listener: DataSourceListener, contex: Context) {
+        //Unos podataka u bazu, ako je potrebno
+        MockData.mockData(contex)
+
+        //Dohvat podataka iz baze
         listener.onDataLoaded(getStores(), getDiscounts())
     }
 }

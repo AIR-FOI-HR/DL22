@@ -11,4 +11,9 @@
     <string name="discount_desc">This is an exemplary discount description which is expected to be multiline. Thus we are using a very long string description to see how the overall behavior of the card view will be with long descriptions.</string>
 
     <string name="nav_header_info">The bast place to look for discounts!</string>
+
+    <string name="menu_about">About app</string>
+    <string name="menu_list">List view</string>
+    <string name="menu_map">Map view</string>
+    <string name="menu_additional">Additional</string>
 </resources>

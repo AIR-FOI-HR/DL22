@@ -2,6 +2,7 @@ package hr.foi.air.dl
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import hr.foi.air.dl.data.DataRepository
 import hr.foi.air.dl.databinding.ActivityMainBinding
 import hr.foi.air.dl.fragments.ListViewFragment
 
@@ -17,8 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         showMainFragment()
-        //load and display data
-        //displayData(binding)
+        loadDataToFragment()
     }
 
     private fun showMainFragment()
@@ -29,29 +29,8 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    /*
-    fun displayData(binding: ActivityMainBinding)
+    private fun loadDataToFragment()
     {
-        val context = this
-        val repository = DataRepository()
-        val discountsNames : ArrayList<String> = ArrayList()
-
-        repository.loadData(this, object : LoadDataListener {
-            override fun onDataLoaded(stores: List<Store>, discounts: List<Discount>) {
-
-                val parentList : ArrayList<StoreParent> = ArrayList()
-                for (s in stores)
-                    parentList.add(StoreParent(s, discounts))
-
-                //prikaz podataka
-                binding.mainRecycler.adapter = StoreRecyclerAdapter(context, parentList)
-                binding.mainRecycler.layoutManager = LinearLayoutManager(context)
-
-                //hiding empty message
-                if (!stores.isEmpty())
-                    binding.emptyMessage.isVisible = false
-            }
-        })
+        DataRepository().loadData(this, currentFragment!!)
     }
-    */
 }

@@ -2,15 +2,7 @@ package hr.foi.air.dl
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
-import hr.foi.air.core.entities.Discount
-import hr.foi.air.core.entities.Store
-import hr.foi.air.dl.data.DataRepository
-import hr.foi.air.dl.data.LoadDataListener
 import hr.foi.air.dl.databinding.ActivityMainBinding
-import hr.foi.air.dl.recyclerview.StoreParent
-import hr.foi.air.dl.recyclerview.StoreRecyclerAdapter
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +13,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //load and display data
-        displayData(binding)
+        //displayData(binding)
     }
 
+    /*
     fun displayData(binding: ActivityMainBinding)
     {
         val context = this
@@ -47,4 +40,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+    */
 }

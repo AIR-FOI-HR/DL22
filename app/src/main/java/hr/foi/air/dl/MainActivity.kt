@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
     private fun showMainFragment()
     {
         currentFragment = ListViewFragment()
-        //supportFragmentManager.beginTransaction()
-        //    .replace(binding.mainFragment.id, currentFragment!!)
-        //    .commit()
+        supportFragmentManager.beginTransaction()
+            .replace(binding.layoutMain.contentMain.mainFragment.id, currentFragment!!)
+            .commit()
     }
 
     private fun loadDataToFragment()

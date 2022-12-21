@@ -6,16 +6,27 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import hr.foi.air.dl.data.DataRepository
 import hr.foi.air.dl.databinding.ActivityMainBinding
 import hr.foi.air.dl.fragments.ListViewFragment
-import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var currentFragment : ListViewFragment? = null
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //for app center integration
+        AppCenter.start(
+            application, "5519b5c3-fc31-4efa-b1bd-eff0edf68e7f",
+            Analytics::class.java, Crashes::class.java
+        )
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
